@@ -18,6 +18,16 @@ function init_repo(){
 	return 0
 }
 
+function commit(){
+	if test ! -z "$1"
+	then
+		COMMENT="$COMMITCOMMENT '$1'"
+	else
+		COMMENT=""
+	fi
+	eval "$COMMITCMD $COMMENT"
+}
+
 if test ! -d "$REPOPATH"
 then
 	init_repo
@@ -40,11 +50,18 @@ else
 	then
 		echo "No targret!"
 		exit 3
+	else
+		TARGET=0
 	fi
 fi
 
 
 cd "$REPOPATH"
+
+if test "$ACTION" == "commit"
+then
+	commit "$TARGET"
+fi
 
 if test "$ACTION" == "add"
 then
