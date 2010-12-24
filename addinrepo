@@ -5,6 +5,7 @@ REPOINIT="git init"
 ADDCMD="git add"
 COMMITCMD="git commit -a"
 COMMITCOMMENT="-m"
+PUSHCMD="git push"
 CURDIR="$PWD"
 
 
@@ -61,6 +62,11 @@ cd "$REPOPATH"
 if test "$ACTION" == "commit"
 then
 	commit "$TARGET"
+fi
+
+if test "$ACTION" == "push"
+then
+	eval "$PUSHCMD"
 fi
 
 if test "$ACTION" == "add"
