@@ -3,3 +3,4 @@ zshenv||/home/fenix/.zshenv
 zprofile||/home/fenix/.zprofile
 aliases||/home/fenix/.aliases
 addinrepo||/home/fenix/bin/addinrepo
+xinitrc||/home/fenix/.xinitrc
