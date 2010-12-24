@@ -1,0 +1,62 @@
+#!/bin/sh
+
+REPOPATH="$HOME/.repo"
+REPOINIT="git init"
+ADDCMD="git add"
+COMMITCMD="git commit -a"
+COMMITCOMMENT="-m"
+CURDIR="$PWD"
+
+
+function init_repo(){
+	eval "mkdir -p $REPOPATH"
+	eval "touch $REPOPATH/.files"
+	cd "$REPOPATH"
+	eval "$REPOINIT"
+	eval "$ADDCMD .files"
+	eval "$COMMITCMD $COMMITCOMMENT 'Iitial commit'"
+	return 0
+}
+
+if test ! -d "$REPOPATH"
+then
+	init_repo
+fi
+
+if ! test -z "$1"
+then
+	ACTION="$1"
+else
+	echo "No Action!"
+	exit 2
+fi
+
+if test ! -z "$2"
+then
+	TARGET="$2"
+	TARGET_=`basename "$TARGET"|sed "s/^\.//"`
+else
+	if test "$ACTION" == "add"
+	then
+		echo "No targret!"
+		exit 3
+	fi
+fi
+
+
+cd "$REPOPATH"
+
+if test "$ACTION" == "add"
+then
+	COMMENT="Added $CURDIR/$TARGET"
+	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'"
+	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'"
+	eval "$ADDCMD $TARGET_"
+	eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'"
+	
+	echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files
+fi
+
+
+
+exit 0
