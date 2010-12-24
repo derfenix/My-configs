@@ -51,7 +51,7 @@ else
 		echo "No targret!"
 		exit 3
 	else
-		TARGET=0
+		TARGET=""
 	fi
 fi
 
