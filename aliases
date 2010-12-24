@@ -1,0 +1,4 @@
+alias ls='ls -h'
+alias обновить='yaourt -Su'
+alias cp='cp -g'
+alias mv='mv -g'
