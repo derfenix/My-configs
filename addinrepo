@@ -1,12 +1,15 @@
 #!/bin/sh
 
-REPOPATH="$HOME/.repo"
-REPOINIT="git init"
-ADDCMD="git add"
-COMMITCMD="git commit -a"
-COMMITCOMMENT="-m"
-PUSHCMD="git push"
-CURDIR="$PWD"
+#Параметры------------
+REPOPATH="$HOME/.repo" #Место хранения репозитория
+REPOINIT="git init" #Команда инициализации репозитория
+ADDCMD="git add" #Команда на добавление файла в репозиторий
+COMMITCMD="git commit -a" #Комманда для коммита
+COMMITCOMMENT="-m" #Добавление комментария к коммиту
+PUSHCMD="git push" #Выгрузка изменений в удалённый репозиторий
+#---------------------
+
+CURDIR="$PWD" #Сохраняем текущий путь для дальнейшего использования
 
 
 function init_repo(){
@@ -45,7 +48,12 @@ fi
 if test ! -z "$2"
 then
 	TARGET="$2"
-	TARGET_=`basename "$TARGET"|sed "s/^\.//"`
+	if test ! -z "$3"
+	then
+		TARGET_="$3"
+	else
+		TARGET_=`basename "$TARGET"|sed "s/^\.//"`
+	fi
 else
 	if test "$ACTION" == "add"
 	then
@@ -72,6 +80,17 @@ fi
 if test "$ACTION" == "add"
 then
 	COMMENT="Added $CURDIR/$TARGET"
+
+	if test -f "$REPOPATH/$TARGET_"
+	then
+		echo "File exists! Rename? (Blank for cancel):"
+		read TARGET_
+		if test -z "$TARGET_"
+		then
+			exit 4
+		fi
+	fi
+
 	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'"
 	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'"
 	eval "$ADDCMD $TARGET_"
