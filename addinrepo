@@ -84,8 +84,6 @@ then
 	eval "$PUSHCMD" #Отправляем изменения в удалённый репозиторий
 elif test "$ACTION" == "add" #Если операция - добавление файла
 then
-	COMMENT="Added $CURDIR/$TARGET" #Создаём комментарий для будущего коммита
-	
 	#Если файл с указанным именем уже сущестует в репозитории
 	if test -f "$REPOPATH/$TARGET_"
 	then
@@ -98,6 +96,7 @@ then
 		fi
 	fi
 
+	COMMENT="Added $CURDIR/$TARGET as $TARGET_" #Создаём комментарий для будущего коммита
 	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
 	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
 	eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
