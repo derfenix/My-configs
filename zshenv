@@ -3,7 +3,7 @@ export LANG="RU"
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 export PATH="$HOME/bin:$PATH"
 
-if test -z "$XAUTHORITY"
+if test -z "$DISPLAY"
 then
 	export BROWSER=w3m
 else
