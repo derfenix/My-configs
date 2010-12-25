@@ -4,3 +4,4 @@ zprofile||/home/fenix/.zprofile
 aliases||/home/fenix/.aliases
 addinrepo||/home/fenix/bin/addinrepo
 xinitrc||/home/fenix/.xinitrc
+sshconfig||/home/fenix/.ssh/config

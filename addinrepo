@@ -12,91 +12,98 @@ PUSHCMD="git push" #Выгрузка изменений в удалённый р
 CURDIR="$PWD" #Сохраняем текущий путь для дальнейшего использования
 
 
+#Инициализация нового репозитория
 function init_repo(){
-	eval "mkdir -p $REPOPATH"
-	eval "touch $REPOPATH/.files"
-	cd "$REPOPATH"
-	eval "$REPOINIT"
-	eval "$ADDCMD .files"
-	eval "$COMMITCMD $COMMITCOMMENT 'Iitial commit'"
+	eval "mkdir -p $REPOPATH" #создаём дирректорию
+	eval "touch $REPOPATH/.files" #Создаём файл с исходными путями
+	cd "$REPOPATH" 
+	eval "$REPOINIT" #Инициализируем репозиторий
+	eval "$ADDCMD .files" #Добавляем в него .files
+	eval "$COMMITCMD $COMMITCOMMENT 'Iitial commit'" #Делаем первый коммит
 	return 0
 }
 
+#Коммит сделанных изменений
 function commit(){
-	if test ! -z "$1"
+	if test ! -z "$1" #Если комментарий указан в параметрах 
 	then
-		COMMENT="$COMMITCOMMENT '$1'"
+		COMMENT="$COMMITCOMMENT '$1'" #то добавляем автоматически
 	else
-		COMMENT=""
+		COMMENT="" #Иначе будет вызвано стандартное добавление комменатрия
 	fi
 	eval "$COMMITCMD $COMMENT"
 }
 
+#Если дирректории с репозиторием не существует
 if test ! -d "$REPOPATH"
 then
-	init_repo
+	init_repo #То создаём и инициализируем
 fi
 
+#Если указан первый параметр
 if ! test -z "$1"
 then
-	ACTION="$1"
+	ACTION="$1" #То он является необходимой операцией
 else
-	echo "No Action!"
+	echo "No Action!" #Иначе выходим. Без указания операции нам нечего делать
 	exit 2
 fi
 
+# Если указан второй параметр
 if test ! -z "$2"
 then
-	TARGET="$2"
+	TARGET="$2" #То это цель для операции
+
+	#Если указан ещё и третий параметр
 	if test ! -z "$3"
 	then
-		TARGET_="$3"
+		TARGET_="$3" #То это имя файла для хранения в репозитории, при добавлении нового файла
 	else
-		TARGET_=`basename "$TARGET"|sed "s/^\.//"`
+		TARGET_=`basename "$TARGET"|sed "s/^\.//"` #Иначе именем файла будет имя добавляемого файла без предшедствующей точки (если есть такая)
 	fi
 else
-	if test "$ACTION" == "add"
+	#Если второй параметр не указан и операция - добавление файла в репозиторий
+	if test "$ACTION" == "add" 
 	then
 		echo "No targret!"
-		exit 3
+		exit 3 #То выходим, т.к. не указано, что добавлять
 	else
-		TARGET=""
+		TARGET="" #Для других операций - просто создаём пустую переменную. 
 	fi
 fi
 
 
-cd "$REPOPATH"
+cd "$REPOPATH" #Переходим в репозиторий
 
+#Если опериация - коммит
 if test "$ACTION" == "commit"
 then
-	commit "$TARGET"
-fi
-
-if test "$ACTION" == "push"
+	commit "$TARGET" #коммитим
+elif test "$ACTION" == "push" #если операция - выгрузка изменений
 then
-	eval "$PUSHCMD"
-fi
-
-if test "$ACTION" == "add"
+	eval "$PUSHCMD" #Отправляем изменения в удалённый репозиторий
+elif test "$ACTION" == "add" #Если операция - добавление файла
 then
-	COMMENT="Added $CURDIR/$TARGET"
-
+	COMMENT="Added $CURDIR/$TARGET" #Создаём комментарий для будущего коммита
+	
+	#Если файл с указанным именем уже сущестует в репозитории
 	if test -f "$REPOPATH/$TARGET_"
 	then
+		#Предлагаем его переименовать
 		echo "File exists! Rename? (Blank for cancel):"
 		read TARGET_
-		if test -z "$TARGET_"
+		if test -z "$TARGET_" #Если нет нового имени
 		then
-			exit 4
+			exit 4 #Выходим
 		fi
 	fi
 
-	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'"
-	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'"
-	eval "$ADDCMD $TARGET_"
-	eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'"
+	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
+	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
+	eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
+	eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
 	
-	echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files
+	echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
 fi
 
 
