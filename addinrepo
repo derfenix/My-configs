@@ -103,6 +103,9 @@ then
 	eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
 	
 	echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
+else
+	echo "No action!"
+	exit 5
 fi
 
 
