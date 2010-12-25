@@ -1,0 +1,8 @@
+Host derfenix
+	HostName derfenix.org
+	Port 888
+
+Host locdog
+	HostName 192.168.1.3
+	Port 22
+
