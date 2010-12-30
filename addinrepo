@@ -4,6 +4,7 @@
 REPOPATH="$HOME/.repo" #Место хранения репозитория
 REPOINIT="git init" #Команда инициализации репозитория
 ADDCMD="git add" #Команда на добавление файла в репозиторий
+CHECKOUTCMD="git checkout master" #Комманда переключения на текущую ветку
 COMMITCMD="git commit -a" #Комманда для коммита
 COMMITCOMMENT="-m" #Добавление комментария к коммиту
 PUSHCMD="git push" #Выгрузка изменений в удалённый репозиторий
@@ -84,6 +85,7 @@ then
 	eval "$PUSHCMD" #Отправляем изменения в удалённый репозиторий
 elif test "$ACTION" == "add" #Если операция - добавление файла
 then
+	eval "$CHECKOUTCMD"
 	#Если файл с указанным именем уже сущестует в репозитории
 	if test -f "$REPOPATH/$TARGET_"
 	then
