@@ -2,3 +2,5 @@ alias ls='ls -h'
 alias обновить='yaourt -Su'
 alias cp='cp -g'
 alias mv='mv -g'
+
+alias wcur="cd $HOME/Work/current"
