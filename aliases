@@ -1,6 +1,6 @@
-alias ls='ls -h'
+alias ls='ls -h --color=auto'
 alias обновить='yaourt -Su'
 alias cp='cp -g'
 alias mv='mv -g'
 
-alias wcur="cd $HOME/Work/current"
+alias wcur="cd $HOME/Work/current/source"
