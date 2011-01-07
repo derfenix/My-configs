@@ -76,40 +76,44 @@ fi
 
 cd "$REPOPATH" #Переходим в репозиторий
 
-#Если опериация - коммит
-if test "$ACTION" == "commit"
-then
-	commit "$TARGET" #коммитим
-elif test "$ACTION" == "push" #если операция - выгрузка изменений
-then
-	eval "$PUSHCMD" #Отправляем изменения в удалённый репозиторий
-elif test "$ACTION" == "add" #Если операция - добавление файла
-then
-	eval "$CHECKOUTCMD"
-	#Если файл с указанным именем уже сущестует в репозитории
-	if test -f "$REPOPATH/$TARGET_"
-	then
-		#Предлагаем его переименовать
-		echo "File exists! Rename? (Blank for cancel):"
-		read TARGET_
-		if test -z "$TARGET_" #Если нет нового имени
-		then
-			exit 4 #Выходим
-		fi
-	fi
-
-	COMMENT="Added $CURDIR/$TARGET as $TARGET_" #Создаём комментарий для будущего коммита
-	eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
-	eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
-	eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
-	eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
+case "$ACTION" in
+	"commit") #Commit
+		commit "$TARGET"
+	;;
 	
-	echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
-else
-	echo "No action!"
-	exit 5
-fi
+	"push") #Push
+		eval "$PUSHCMD"
+	;;
 
+	"add") #Adding
+		eval "$CHECKOUTCMD" #Переключаемся в основной репозиторий
+
+		#Если файл с указанным именем уже сущестует в репозитории
+		if test -f "$REPOPATH/$TARGET_"
+		then
+			#Предлагаем его переименовать
+			echo "File exists! Rename? (Blank for cancel):"
+			read TARGET_
+			if test -z "$TARGET_" #Если нет нового имени
+			then
+				exit 4 #Выходим
+			fi
+		fi
+
+		COMMENT="Added $CURDIR/$TARGET as $TARGET_" #Создаём комментарий для будущего коммита
+		eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
+		eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
+		eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
+		eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
+	
+		echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
+	;;
+
+	*)
+		echo "No action!"
+		exit 5
+	;;
+esac
 
 
 exit 0
