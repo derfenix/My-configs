@@ -4,3 +4,7 @@ alias cp='cp -g'
 alias mv='mv -g'
 
 alias wcur="cd $HOME/Work/current/source"
+
+#Git aliases
+alias commit='git commit -a'
+alias gpush='git push'
