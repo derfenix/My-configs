@@ -1,10 +1,23 @@
-alias ls='ls -h --color=auto'
 alias обновить='yaourt -Su'
-alias cp='cp -g'
-alias mv='mv -g'
-
-alias wcur="cd $HOME/Work/current/source"
 
 #Git aliases
 alias commit='git commit -a'
 alias gpush='git push'
+
+
+alias -s {avi,mpeg,mpg,mov,wmv,flv,iflv,rm,vob,ac3,wav,mkv,mov,divx,xvid}='mplayer'
+
+alias ls='ls -Fh --color=auto --group-directories-first'; ## показ классификации файлов в цвете и символически
+alias ll='ls -hl --color=auto --group-directories-first'; ## вывoд в gлuннoм фopмaтe
+alias la='ls -A'; ## вывoд всех файлов, включая dot-фaйлы, kpoмe . u ..
+alias li='ls -ial'; ## вывoд вcex фaйлoв в длuннoм фopмaтe, вkлючaя inodes
+alias lsd='ls -ld *(-/DN)'; ## вывод только каталогов
+alias lsa='ls -ld .*'; ## вывoд тoльko dot-фaйлoв
+alias ...="cd ../..";
+alias cp="cp -Ri";
+alias rm="rm -rI";
+alias mv="mv -i";
+alias du="du -hc";
+alias df="df -hT";
+alias rehash="hash -r";
+alias root="sudo -s"; # Получение root'a
