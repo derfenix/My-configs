@@ -3,7 +3,7 @@ alias обновить='yaourt -Su'
 #Git aliases
 alias commit='git commit -a'
 alias gpush='git push'
-
+alias s='ssh'
 
 alias -s {avi,mpeg,mpg,mov,wmv,flv,iflv,rm,vob,ac3,wav,mkv,mov,divx,xvid}='mplayer'
 

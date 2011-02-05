@@ -3,7 +3,7 @@ export LANG="RU"
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 export PATH="$HOME/bin:$PATH"
 export GREP_OPTIONS='--color=auto'
-export PAGER="more"
+export PAGER="less"
 export READNULLCMD="${PAGER}"
 export VISUAL="vim"
 export EDITOR="${VISUAL}"
