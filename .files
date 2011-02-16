@@ -6,3 +6,4 @@ addinrepo||/home/fenix/bin/addinrepo
 xinitrc||/home/fenix/.xinitrc
 sshconfig||/home/fenix/.ssh/config
 Xdefaults||/home/fenix/.Xdefaults
+inputrc||/home/fenix/.inputrc
