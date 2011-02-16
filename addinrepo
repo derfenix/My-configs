@@ -104,10 +104,10 @@ case "$ACTION" in
 		eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
 		eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
 		eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
+		echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
 		eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
 	
-		echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
-	;;
+		;;
 
 	*)
 		echo "No action!"
