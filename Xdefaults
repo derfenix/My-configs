@@ -1,0 +1,14 @@
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.antialias: true
+Xft.rgba: none
+
+
+XTerm*renderFont: true
+XTerm*background: black
+XTerm*foreground: white
+XTerm*faceName: Terminus:pixelsize=10
+
+XTerm*metaSendsEscape: true
+XTerm*eightBitInput: false
