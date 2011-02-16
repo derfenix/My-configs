@@ -134,8 +134,8 @@ bindkey "^[[2~" yank
 bindkey "^[[3~" delete-char
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 bindkey "^[e" expand-cmd-path
 bindkey "^[[A" history-beginning-search-backward-end   # up arrow for back-history-search
 bindkey "^[[B" history-beginning-search-forward-end # down arrow for fwd-history-search
