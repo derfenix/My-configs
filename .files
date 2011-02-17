@@ -8,3 +8,4 @@ sshconfig||/home/fenix/.ssh/config
 Xdefaults||/home/fenix/.Xdefaults
 inputrc||/home/fenix/.inputrc
 vimrc||/home/fenix/.vimrc
+conkyrc||/home/fenix/.conkyrc
