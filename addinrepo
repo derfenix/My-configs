@@ -11,6 +11,7 @@ PUSHCMD="git push" #Выгрузка изменений в удалённый р
 #---------------------
 
 CURDIR="$PWD" #Сохраняем текущий путь для дальнейшего использования
+CURDIR_=`echo "$CURDIR"|sed 's/\/home\/fenix/$HOME/'` #Костыль, блин... 
 
 
 #Инициализация нового репозитория
@@ -104,7 +105,7 @@ case "$ACTION" in
 		eval "mv '$CURDIR/$TARGET' '$REPOPATH/$TARGET_'" #Перемещаем файл в дирректорию репозитория
 		eval "ln -s '$REPOPATH/$TARGET_' '$CURDIR/$TARGET'" #Создаём на него ссылку по исходному пути
 		eval "$ADDCMD $TARGET_" #Добавляем файл в репозиторий
-		echo "$TARGET_||$CURDIR/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
+		echo "$TARGET_||$CURDIR_/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
 		eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
 	
 		;;
