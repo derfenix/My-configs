@@ -36,6 +36,11 @@ function commit(){
 	eval "$COMMITCMD $COMMENT"
 }
 
+#Разворачивание конфигов на новой системе
+function makeInstall(){
+	echo "Not implemented"	
+}
+
 #Если дирректории с репозиторием не существует
 if test ! -d "$REPOPATH"
 then
@@ -108,6 +113,10 @@ case "$ACTION" in
 		echo "$TARGET_||$CURDIR_/$TARGET">>$REPOPATH/.files #Записываем в файл исходный путь для файла
 		eval "$COMMITCMD $COMMITCOMMENT '$COMMENT'" #Коммитим изменения
 	
+	;;
+	
+	"install") #Разворачивание конфигов на новой машине
+		makeInstall
 		;;
 
 	*)
