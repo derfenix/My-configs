@@ -10,5 +10,10 @@ xxkb &
 volumeicon &
 eval `cat ~/.fehbg`
 
-exec ck-launch-session `cat "$HOME/.xsession"` #В .xsession всего одна строчка - название WM (DE) для запуска
-#exec xterm
+if test -z "$1"
+then
+	exec ck-launch-session `cat "$HOME/.xsession"` #В .xsession всего одна строчка - название WM (DE) для запуска
+	#exec xterm
+else
+	exec "$@"
+fi
