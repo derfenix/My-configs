@@ -1,5 +1,5 @@
 use_xft yes
-xftfont Liberation Sans Mono:size=8
+xftfont Liberation Sans:size=7
 
 update_interval 1
 total_run_times 0

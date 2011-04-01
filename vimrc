@@ -29,3 +29,4 @@ set fileencodings=utf-8,cp1251,koi8-r,cp866
 colorscheme tango
 filetype plugin on
 
+let ropevim_vim_completion=1

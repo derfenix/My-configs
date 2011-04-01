@@ -12,4 +12,4 @@ Host web
 
 Host mail
 	HostName 188.127.240.160
-
+	Port 888
