@@ -10,3 +10,4 @@ inputrc||.inputrc
 vimrc||.vimrc
 conkyrc||.conkyrc
 fonts.conf||.fonts.conf
+icewm||/.xinit.d/icewm

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NOFEH=true
+
+source .xinit.d/node
+
+
+exec icewm-session
