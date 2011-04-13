@@ -2,7 +2,10 @@
 
 NOFEH=true
 
-source .xinit.d/node
+if true
+then 
+	sleep 3
+	source .xinit.d/node
+fi &
 
-
-exec icewm-session
+icewm-session
