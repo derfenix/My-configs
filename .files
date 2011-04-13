@@ -12,3 +12,4 @@ conkyrc||.conkyrc
 fonts.conf||.fonts.conf
 icewm||/.xinit.d/icewm
 awesome||/.xinit.d/awesome
+node||/.xinit.d/node
