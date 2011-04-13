@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source .xinit.d/node
+
+exec awesome
