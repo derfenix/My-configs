@@ -13,3 +13,7 @@ Host web
 Host mail
 	HostName 188.127.240.160
 	Port 888
+
+Host db
+	HostName 62.76.41.32
+	Port 888

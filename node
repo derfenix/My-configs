@@ -8,7 +8,7 @@ xxkb &
 #gvolwheel &
 volumeicon &
 
-if $NOFEH
+if [[ $NOFEH == true ]]
 then
 	echo "Nofeh"
 else

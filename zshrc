@@ -2,11 +2,15 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-source ~/.zshenv
-source ~/.aliases
-
 
 typeset -U path cdpath fpath manpath
+
+cdpath=($HOME/Work $HOME /media "/usr/lib/python2.7/site-packages/")
+
+
+source ~/.zshenv
+source ~/.aliases
+source ~/.radio
 
 autoload -Uz compinit
 compinit -i
