@@ -15,3 +15,4 @@ awesome||/.xinit.d/awesome
 node||/.xinit.d/node
 openbox-session||/.xinit.d/openbox-session
 zshrc||/.zshrc
+zenv||/.zenv

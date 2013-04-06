@@ -1,0 +1,22 @@
+export LANG='ru_RU.utf8'
+export LC_COLLATE=POSIX
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
+export SDL_AUDIODRIVER=alsa
+
+#export CHROMIUM_USER_FLAGS="--disk-cache-dir=/tmp/cache --memory-model=low" 
+
+export CDPATH=/home/dev/python:$HOME
+
+
+NORMAL="$(echo -e '\033[0;39m')"
+BLUE="$(echo -e '\033[1;34m')"
+CYAN="$(echo -e '\033[1;36m')"
+GREEN="$(echo -e '\033[1;32m')"
+MAGENTA="$(echo -e '\033[1;35m')"
+RED="$(echo -e '\033[1;31m')"
+YELLOW="$(echo -e '\033[1;33m')"
+
+OOO_FORCE_DESKTOP=kde
+
+# vim: set ft=sh:
