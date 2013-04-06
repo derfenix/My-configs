@@ -17,3 +17,4 @@ openbox-session||/.xinit.d/openbox-session
 zshrc||/.zshrc
 zenv||/.zenv
 vimrc||/.vimrc
+gitconfig||/.gitconfig
