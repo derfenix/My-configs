@@ -18,3 +18,4 @@ zshrc||/.zshrc
 zenv||/.zenv
 vimrc||/.vimrc
 gitconfig||/.gitconfig
+aliases||/.aliases

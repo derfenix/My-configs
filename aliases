@@ -1,0 +1,144 @@
+alias sudo="PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin sudo"
+
+#Pacman-yaourt aliases=========
+if [[ -f "$(which pacman)" ]]
+then
+	alias y="yaourt"
+	alias p="pacman"
+	alias upg="yaourt -Syua" 
+	alias rem="yaourt -R"
+	alias inst="yaourt -S"
+fi
+#==============================
+
+#Zypper aliases===============
+if [[ -f "$(which zypper)" ]]
+then
+    alias zin="NO_PROXY=* sudo zypper in"
+    alias zref="NO_PROXY=* sudo zypper ref"
+    alias zse="zypper se"
+    alias zup="NO_PROXY=* sudo zypper up"
+    alias zdup="NO_PROXY=* sudo zypper dup"
+fi
+#=============================
+
+if [[ -f "$(which systemctl)" ]]
+then
+	alias sc="sudo `which systemctl`"
+fi
+
+if [[ -f "$(which emerge)" ]]
+then
+	alias esync='sudo emerge --sync && sudo layman -S'
+	alias eup='sudo emerge --deep --update --newuse world'
+fi
+
+alias wgetpaste='/usr/bin/wgetpaste -C'
+
+alias acpit='acpi -t'
+
+alias restore_brightness='echo 4200|sudo tee /sys/class/backlight/intel_backlight/brightness'
+
+
+alias djangoproject="django-admin.py startproject --template=$HOME/templates/django/masterproject"
+alias djangoapp="django-admin.py startapp --template=$HOME/templates/django/masterapp"
+alias djangoserver='python2 manage.py runserver'
+alias syncdb="python2 manage.py syncdb"
+alias migrateall="python2 manage.py migrate --all"
+alias pipinstall="pip install --download-cache /home/dev/python/pip-cache"
+
+#alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_rsa) && ssh'
+
+
+alias prelink='sudo /usr/sbin/prelink -avfmR'
+
+
+
+alias getip="wget -qO - icanhazip.com"
+
+alias suspend='dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend'
+alias halt='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop'
+alias reboot='dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart'
+
+alias mkdir='mkdir -p -v'
+alias mv='mv -v'
+alias o='xdg-open'
+alias suvim='sudo vim'
+alias psa='ps -A'
+alias root='sudo su -'
+alias -s {wmv,mp4,avi,flv,mkv,mp3,ogg,flac,wav}='mplayer -vo fbdev2'
+
+
+alias ololo="while true; do echo -n 'ololo'; done"
+
+alias freeze="pip freeze >requirements.txt"
+alias activate="source venv/bin/activate"
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g CA="2>&1 | cat -A"
+alias -g C='| wc -l'
+alias -g D="DISPLAY=:0.0"
+alias -g DN=/dev/null
+alias -g ED="export DISPLAY=:0.0"
+alias -g EG='|& egrep'
+alias -g EH='|& head'
+alias -g EL='|& less'
+alias -g ELS='|& less -S'
+alias -g ETL='|& tail -20'
+alias -g ET='|& tail'
+alias -g F=' | fmt -'
+alias -g G='| grep'
+alias -g H='| head'
+alias -g HL='|& head -20'
+alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
+alias -g LL="2>&1 | less"
+alias -g L="| less"
+alias -g LS='| less -S'
+alias -g MM='| most'
+alias -g M='| more'
+alias -g NE="2> /dev/null"
+alias -g NS='| sort -n'
+alias -g NUL="> /dev/null 2>&1"
+alias -g PIPE='|'
+alias -g R=' > $HOME/tee.txt '
+alias -g RNS='| sort -nr'
+alias -g S='| sort'
+alias -g TL='| tail -20'
+alias -g T='| tail'
+alias -g US='| sort -u'
+alias -g VM=/var/log/messages.log
+alias -g X0G='| xargs -0 egrep'
+alias -g X0='| xargs -0'
+alias -g XG='| xargs egrep'
+alias -g X='| xargs'
+alias -g LANGC='LANG=C'
+alias -g ELANGC='export LANG=C'
+alias -g LANGRU='LANG=ru_RU.utf8'
+alias -g ELANGRU='export LANG=ru_RU.utf8'
+
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2) tar xvjf $1 ;;
+            *.tar.gz) tar xvzf $1 ;;
+            *.tar.xz) tar xvJf $1 ;;
+            *.bz2) bunzip2 $1 ;;
+            *.rar) unrar x $1 ;;
+            *.gz) gunzip $1 ;;
+            *.tar) tar xvf $1 ;;
+            *.tbz2) tar xvjf $1 ;;
+            *.tgz) tar xvzf $1 ;;
+            *.zip) unzip $1 ;;
+            *.Z) uncompress $1 ;;
+            *.7z) 7z x $1 ;;
+            *.xz) unxz $1 ;;
+            *.exe) cabextract $1 ;;
+                *) echo "'$1': unrecognized file compression" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
