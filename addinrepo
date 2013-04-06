@@ -39,7 +39,26 @@ function commit(){
 
 #Разворачивание конфигов на новой системе
 function makeInstall(){
-	echo "Not implemented"	
+    for l in $(cat .files)
+    do
+        f=`echo $l|awk -F '|' '{print $1}'`
+        dest="$HOME/`echo $l|awk -F '|' '{print $3}'`"
+        if [[ -f "$dest" ]] && [[ "$1x" != "forcex" ]]
+        then
+            echo -n "File $dest exitst. Owerwrite? (y/n) "
+            read OWERWRITE
+            if [[ "${OWERWRITE}x" = "yx" ]]
+            then
+                #cp -f "$f" "$dest"
+                echo "cp -f $f $dest"
+            else
+                echo "Skip $dest"
+            fi
+        fi
+        echo "File $f copied to $dest"
+    done
+    echo "Done!"
+    exit 0
 }
 
 #Если дирректории с репозиторием не существует
@@ -117,7 +136,7 @@ case "$ACTION" in
 	;;
 	
 	"install") #Разворачивание конфигов на новой машине
-		makeInstall
+		makeInstall $2
 		;;
 
 	*)
