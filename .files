@@ -19,3 +19,4 @@ zenv||/.zenv
 vimrc||/.vimrc
 gitconfig||/.gitconfig
 aliases||/.aliases
+htoprc||/.config/htop/htoprc

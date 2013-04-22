@@ -40,4 +40,4 @@ asexplicit() {
     sudo pacman -D --asexplicit $@
 }
 
-PATH=$HOME/bin:$PATH:/home/fenix/.gem/ruby/1.9.1/bin
+PATH=$HOME/.bin:$PATH:/home/fenix/.gem/ruby/1.9.1/bin
